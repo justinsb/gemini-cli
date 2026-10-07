@@ -312,15 +312,15 @@ export class ShellToolInvocation extends BaseToolInvocation<
       return super.shouldConfirmExecute(abortSignal, forcedDecision);
     }
 
-    if (this.hasTaintedOrBuildFileRisk()) {
-      return this.getConfirmationDetails(abortSignal);
-    }
-
     if (
       this.context.config.getApprovalMode() === ApprovalMode.YOLO &&
       forcedDecision !== 'ask_user'
     ) {
       return super.shouldConfirmExecute(abortSignal, forcedDecision);
+    }
+
+    if (this.hasTaintedOrBuildFileRisk()) {
+      return this.getConfirmationDetails(abortSignal);
     }
 
     if (this.params[PARAM_ADDITIONAL_PERMISSIONS]) {

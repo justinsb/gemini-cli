@@ -30,7 +30,7 @@ import {
   UPDATE_TOPIC_TOOL_NAME,
   EDIT_TOOL_NAMES,
 } from '../tools/tool-names.js';
-import { PolicyDecision, type ApprovalMode } from '../policy/types.js';
+import { ApprovalMode, PolicyDecision } from '../policy/types.js';
 import {
   ToolConfirmationOutcome,
   type AnyDeclarativeTool,
@@ -672,7 +672,10 @@ export class Scheduler {
       decision = PolicyDecision.ASK_USER;
     }
 
-    const hasTaintRisk =
+    // YOLO mode trusts the agent's actions. Do not escalate the taint /
+    // build-file heuristics there; in headless mode they become hard denials.
+    const yolo = this.context.config.getApprovalMode() === ApprovalMode.YOLO;
+    const hasTaintRisk = !yolo &&
       isTaintRiskDetectable(toolCall.invocation) &&
       toolCall.invocation.hasTaintedOrBuildFileRisk();
 
