@@ -4065,7 +4065,7 @@ describe('GeminiChat', () => {
 
       expect(mockRetryWithBackoff).toHaveBeenCalledWith(
         expect.any(Function),
-        expect.objectContaining({ maxAttempts: 1 }),
+        expect.objectContaining({ maxAttempts: 10 }),
       );
       expect(mockAvailabilityService.consumeStickyAttempt).toHaveBeenCalledWith(
         'model-a',

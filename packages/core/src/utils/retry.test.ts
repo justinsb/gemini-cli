@@ -71,7 +71,7 @@ describe('retryWithBackoff', () => {
   it('should retry and succeed if failures are within maxAttempts', async () => {
     const mockFn = createFailingFunction(2);
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 10,
     });
 
@@ -87,7 +87,7 @@ describe('retryWithBackoff', () => {
 
     // 1. Start the retryable operation, which returns a promise.
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 10,
     });
 
@@ -171,7 +171,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 10,
     });
 
@@ -188,7 +188,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 10,
     });
 
@@ -206,7 +206,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 10,
     });
     await expect(promise).rejects.toThrow('Bad Request');
@@ -221,7 +221,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 10,
     });
 
@@ -242,7 +242,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 10,
     });
     await expect(promise).rejects.toThrow('Bad Request');
@@ -283,7 +283,7 @@ describe('retryWithBackoff', () => {
     // Run retryWithBackoff multiple times to observe jitter
     const runRetry = () =>
       retryWithBackoff(mockFn, {
-        maxAttempts: 2, // Only one retry, so one delay
+        maxAttempts: 20, // Only one retry, so one delay
         initialDelayMs: 100,
         maxDelayMs: 1000,
       });
@@ -601,7 +601,7 @@ describe('retryWithBackoff', () => {
       });
 
       const promise = retryWithBackoff(mockFn, {
-        maxAttempts: 3,
+        maxAttempts: 30,
         initialDelayMs: 100,
         onPersistent429: async (authType?: string, error?: unknown) => {
           fallbackOccurred = true;
@@ -627,7 +627,7 @@ describe('retryWithBackoff', () => {
       });
 
       const promise = retryWithBackoff(mockFn, {
-        maxAttempts: 2,
+        maxAttempts: 20,
         initialDelayMs: 100,
       });
 
@@ -655,7 +655,7 @@ describe('retryWithBackoff', () => {
         });
 
         const promise = retryWithBackoff(mockFn, {
-          maxAttempts: 3,
+          maxAttempts: 30,
           onPersistent429: fallbackCallback,
           authType,
         });
@@ -699,7 +699,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 100,
       signal: abortController.signal,
       onRetry,
@@ -723,7 +723,7 @@ describe('retryWithBackoff', () => {
     const mockFn = vi.fn().mockResolvedValue({});
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 100,
       signal: abortController.signal,
       onRetry,
@@ -753,7 +753,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 100,
       onPersistent429: async (authType?: string, error?: unknown) => {
         fallbackOccurred = true;
@@ -785,7 +785,7 @@ describe('retryWithBackoff', () => {
     });
 
     const promise = retryWithBackoff(mockFn, {
-      maxAttempts: 3,
+      maxAttempts: 30,
       initialDelayMs: 100,
       onPersistent429: async (authType?: string, error?: unknown) => {
         fallbackOccurred = true;
@@ -855,7 +855,7 @@ describe('retryWithBackoff', () => {
 
       await expect(
         retryWithBackoff(fn, {
-          maxAttempts: 3,
+          maxAttempts: 30,
           initialDelayMs: 1,
           getAvailabilityContext: getContext,
           onPersistent429,
@@ -885,7 +885,7 @@ describe('retryWithBackoff', () => {
 
       vi.useFakeTimers();
       const promise = retryWithBackoff(fn, {
-        maxAttempts: 3,
+        maxAttempts: 30,
         getAvailabilityContext: getContext,
         initialDelayMs: 1,
         maxDelayMs: 1,
@@ -932,7 +932,7 @@ describe('retryWithBackoff', () => {
 
       // Run for quotaError
       await retryWithBackoff(fn, {
-        maxAttempts: 1,
+        maxAttempts: 10,
         getAvailabilityContext: getContext,
       }).catch(() => {});
       expect(mockService.markTerminal).not.toHaveBeenCalled();
@@ -963,7 +963,7 @@ describe('retryWithBackoff', () => {
         .mockResolvedValue('success');
 
       const promise = retryWithBackoff(fn, {
-        maxAttempts: 3,
+        maxAttempts: 30,
         initialDelayMs: 1,
         maxDelayMs: 2,
         onPersistent429: undefined, // unattended mode

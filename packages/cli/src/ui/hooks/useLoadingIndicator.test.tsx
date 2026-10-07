@@ -235,7 +235,7 @@ describe('useLoadingIndicator', () => {
     const retryStatus = {
       model: 'gemini-pro',
       attempt: 2,
-      maxAttempts: 3,
+      maxAttempts: 30,
       delayMs: 1000,
     };
     const { result } = await renderLoadingIndicatorHook(
@@ -255,7 +255,7 @@ describe('useLoadingIndicator', () => {
     const retryStatus = {
       model: 'gemini-pro',
       attempt: 2,
-      maxAttempts: 3,
+      maxAttempts: 30,
       delayMs: 1000,
     };
     const { result } = await renderLoadingIndicatorHook(

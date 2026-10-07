@@ -488,7 +488,7 @@ describe('policyHelpers', () => {
         policy: {
           model: 'test-model',
           stateTransitions: { transient: 'sticky_retry' },
-          maxAttempts: 3,
+          maxAttempts: 30,
         },
       };
       const getContext = () => context as unknown as RetryAvailabilityContext;

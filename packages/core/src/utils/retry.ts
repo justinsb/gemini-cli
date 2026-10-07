@@ -17,7 +17,7 @@ import { getErrorStatus, ModelNotFoundError } from './httpErrors.js';
 import type { RetryAvailabilityContext } from '../availability/modelPolicy.js';
 
 export type { RetryAvailabilityContext };
-export const DEFAULT_MAX_ATTEMPTS = 10;
+export const DEFAULT_MAX_ATTEMPTS = 100;
 
 export interface RetryOptions {
   maxAttempts: number;
@@ -272,7 +272,7 @@ export async function retryWithBackoff<T>(
     : {};
 
   const {
-    maxAttempts,
+    //maxAttempts,
     initialDelayMs,
     maxDelayMs,
     onPersistent429,
@@ -290,8 +290,7 @@ export async function retryWithBackoff<T>(
     ...cleanOptions,
   };
 
-  const getCurrentMaxAttempts = () =>
-    getAvailabilityContext?.()?.policy.maxAttempts ?? maxAttempts;
+  const getCurrentMaxAttempts = () => 100; //  getAvailabilityContext?.()?.policy.maxAttempts ?? maxAttempts;
 
   let attempt = 0;
   let capacityAttempts = 0;

@@ -60,7 +60,7 @@ const DEFAULT_STATE: ModelPolicyStateMap = {
 };
 
 const AUTO_ROUTING_OVERRIDES = {
-  maxAttempts: 3,
+  maxAttempts: 30,
   actions: { ...DEFAULT_ACTIONS, transient: 'silent' } as ModelPolicyActionMap,
   stateTransitions: {
     ...DEFAULT_STATE,
@@ -91,7 +91,7 @@ export function getModelPolicyChain(
         model: proModel,
         ...(isAuto
           ? {
-              maxAttempts: 3,
+              maxAttempts: 30,
               actions: { ...DEFAULT_ACTIONS, transient: 'silent' },
               stateTransitions: { ...DEFAULT_STATE, transient: 'sticky_retry' },
             }
@@ -100,7 +100,7 @@ export function getModelPolicyChain(
       definePolicy({
         model: PREVIEW_GEMINI_FLASH_MODEL,
         isLastResort: true,
-        maxAttempts: 10,
+        maxAttempts: 100,
       }),
     ];
   }
@@ -113,7 +113,7 @@ export function getModelPolicyChain(
     definePolicy({
       model: DEFAULT_GEMINI_FLASH_MODEL,
       isLastResort: true,
-      maxAttempts: 10,
+      maxAttempts: 100,
     }),
   ];
 }

@@ -211,7 +211,7 @@ describe('Auto Routing Fallback Integration', () => {
       abortSignal: new AbortController().signal,
       promptId: 'test-prompt',
       role: LlmRole.UTILITY_TOOL,
-      maxAttempts: 10,
+      maxAttempts: 100,
     });
 
     await Promise.all([

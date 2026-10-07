@@ -730,7 +730,7 @@ describe('BaseLlmClient', () => {
       const result = await client.generateContent({
         ...contentOptions,
         modelConfigKey: { model: firstModel, isChatModel: true },
-        maxAttempts: 2,
+        maxAttempts: 20,
         role: LlmRole.UTILITY_TOOL,
       });
 
@@ -771,7 +771,7 @@ describe('BaseLlmClient', () => {
       );
       expect(retryWithBackoff).toHaveBeenCalledWith(
         expect.any(Function),
-        expect.objectContaining({ maxAttempts: 1 }),
+        expect.objectContaining({ maxAttempts: 10 }),
       );
     });
 
@@ -860,7 +860,7 @@ describe('BaseLlmClient', () => {
       await client.generateContent({
         ...contentOptions,
         modelConfigKey: { model: firstModel },
-        maxAttempts: 2,
+        maxAttempts: 20,
         role: LlmRole.UTILITY_TOOL,
       });
 

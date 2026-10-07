@@ -74,7 +74,7 @@ describe('Shared Project Throttling Integration', () => {
     );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 1,
+      maxAttempts: 10,
       initialDelayMs: 1,
       maxDelayMs: 5,
       onPersistent429: mockPersistent429Callback,
@@ -101,7 +101,7 @@ describe('Shared Project Throttling Integration', () => {
       );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 1,
+      maxAttempts: 10,
       initialDelayMs: 1,
       maxDelayMs: 5,
       authType: AuthType.LOGIN_WITH_GOOGLE,
@@ -133,7 +133,7 @@ describe('Shared Project Throttling Integration', () => {
       );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 1,
+      maxAttempts: 10,
       initialDelayMs: 1,
       maxDelayMs: 5,
       authType: AuthType.LOGIN_WITH_GOOGLE,
@@ -155,7 +155,7 @@ describe('Shared Project Throttling Integration', () => {
       );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 1,
+      maxAttempts: 10,
       initialDelayMs: 1,
       maxDelayMs: 5,
       authType: AuthType.USE_GEMINI, // API Key auth type

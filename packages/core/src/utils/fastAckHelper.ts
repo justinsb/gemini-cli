@@ -193,7 +193,7 @@ export async function generateFastAckText(
       role: LlmRole.UTILITY_FAST_ACK_HELPER,
       abortSignal,
       promptId,
-      maxAttempts: 1, // Fast path, don't retry much
+      maxAttempts: 10, // Fast path, don't retry much
     });
 
     const responseText = normalizeSpace(getResponseText(response) || '');

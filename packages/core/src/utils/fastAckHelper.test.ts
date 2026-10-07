@@ -64,7 +64,7 @@ describe('generateFastAckText', () => {
       contents: expect.any(Array),
       abortSignal,
       promptId: 'test',
-      maxAttempts: 1,
+      maxAttempts: 10,
       role: LlmRole.UTILITY_FAST_ACK_HELPER,
     });
   });

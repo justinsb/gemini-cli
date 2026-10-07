@@ -708,7 +708,7 @@ export class LoopDetectionService {
         systemInstruction: LOOP_DETECTION_SYSTEM_PROMPT,
         abortSignal: signal,
         promptId: this.promptId,
-        maxAttempts: 2,
+        maxAttempts: 20,
         role: LlmRole.UTILITY_LOOP_DETECTOR,
       });
 

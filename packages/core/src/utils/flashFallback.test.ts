@@ -91,7 +91,7 @@ describe('Retry Utility Fallback Integration', () => {
     });
 
     const result = await retryWithBackoff(mockApiCall, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 1,
       maxDelayMs: 10,
       onPersistent429: mockPersistent429Callback,
@@ -121,7 +121,7 @@ describe('Retry Utility Fallback Integration', () => {
     );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 10, // High maxAttempts to prove we don't wait for max attempts
+      maxAttempts: 100, // High maxAttempts to prove we don't wait for max attempts
       initialDelayMs: 1,
       maxDelayMs: 10,
       onPersistent429: mockPersistent429Callback,
@@ -153,7 +153,7 @@ describe('Retry Utility Fallback Integration', () => {
     });
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 1,
       maxDelayMs: 10,
       onPersistent429: mockPersistent429Callback,
@@ -175,7 +175,7 @@ describe('Retry Utility Fallback Integration', () => {
       );
 
     const promise = retryWithBackoff(mockApiCall, {
-      maxAttempts: 2,
+      maxAttempts: 20,
       initialDelayMs: 1,
       maxDelayMs: 10,
       onPersistent429: fallbackCallback,

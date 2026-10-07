@@ -36,7 +36,7 @@ import {
   createAvailabilityContextProvider,
 } from '../availability/policyHelpers.js';
 
-const DEFAULT_MAX_ATTEMPTS = 5;
+const DEFAULT_MAX_ATTEMPTS = 50;
 
 /**
  * Options for the generateJson utility function.

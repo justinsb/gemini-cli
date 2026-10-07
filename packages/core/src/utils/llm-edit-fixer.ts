@@ -187,7 +187,7 @@ export async function FixLLMEditWithInstruction(
       abortSignal,
       systemInstruction: EDIT_SYS_PROMPT,
       promptId,
-      maxAttempts: 1,
+      maxAttempts: 10,
       role: LlmRole.UTILITY_EDIT_CORRECTOR,
     },
     GENERATE_JSON_TIMEOUT_MS,

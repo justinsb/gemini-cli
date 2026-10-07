@@ -2186,7 +2186,7 @@ describe('useGeminiStream', () => {
       const retryPayload = {
         model: 'gemini-2.5-pro',
         attempt: 2,
-        maxAttempts: 3,
+        maxAttempts: 30,
         delayMs: 1000,
       };
 
@@ -2203,7 +2203,7 @@ describe('useGeminiStream', () => {
       const retryPayload = {
         model: 'gemini-2.5-pro',
         attempt: 2,
-        maxAttempts: 3,
+        maxAttempts: 30,
         delayMs: 1000,
       };
 
@@ -2243,13 +2243,13 @@ describe('useGeminiStream', () => {
       const retryPayload = {
         model: 'gemini-2.5-pro',
         attempt: 2,
-        maxAttempts: 3,
+        maxAttempts: 30,
         delayMs: 1000,
       };
       const lateRetryPayload = {
         model: 'gemini-2.5-pro',
         attempt: 3,
-        maxAttempts: 3,
+        maxAttempts: 30,
         delayMs: 2000,
       };
 
