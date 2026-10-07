@@ -833,7 +833,7 @@ export class PolicyEngine {
         const tokens = name.toLowerCase().split(/[^a-z0-9]+/);
         return tokens.some((token) => editKeywords.has(token));
       });
-      if (isFileEditTool) {
+      if (isFileEditTool && this.approvalMode !== ApprovalMode.YOLO) {
         let targetPath = extractFilePathFromArgs(toolCall.args);
         if (targetPath) {
           targetPath = targetPath.trim();
